@@ -28,12 +28,12 @@ int main(){
 
     cout << "\nAction(s):\tv1 is populated with " << SIZE 
          << " " + itemType + " values\n";
-    v1.push_back("Abigail");
-    v1.push_back("Beatriz");
-    v1.push_back("Citlali");
-    v1.push_back("Daneli");
-    v1.push_back("Elisa");
-    v1.push_back("Frida");
+    v1.push_back("Marx");
+    v1.push_back("Engles");
+    v1.push_back("Lenin");
+    v1.push_back("Stalin");
+    v1.push_back("Khrushchev");
+    v1.push_back("Brezhnev");
 
     cout << "\nStatement:\tvector<int> v2(v1);\n";
     vector<string> v2(v1);
