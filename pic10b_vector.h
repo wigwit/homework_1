@@ -235,5 +235,34 @@ void print_vector(const Pic10b::vector<T>& v) {
 		std::cout << "Vector (contents): " << v << '\n';
 }
 
+//required from assignment description
+//dot product for int and double
+template<typename T>
+T operator*(const Pic10b::vector<T>&v1, const Pic10b::vector<T>&v2)
+{
+	T sum = 0;
+	if (v1.size() == v2.size())
+	{
+		for (int i = 0; i < v1.size(); ++i)
+			sum += v1[i] * v2[i];
+		return sum;
+	}
+}
+
+//vector + vector
+// two copy constructors called
+template <typename T>
+Pic10b::vector<T> operator+(const Pic10b::vector<T>& v1, Pic10b::vector<T>v2)// one of them pass by val
+{
+	v2 += v1;
+	return v2; // will not affect the actual since v2 is passed by value
+}
+
+template <typename T>
+Pic10b::vector<T> operator*(T n, Pic10b::vector<T>& v)
+{
+	return v * n;// output will be the same as v*n
+}
+
 
 #endif 
