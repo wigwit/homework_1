@@ -11,13 +11,15 @@ Date: 4/29/2018
 */
 #include <iostream>   // std::ostream, std::cout
 
+
 namespace Pic10b {
 
+	template<typename T>
 	class vector {
 	private:
-		double* the_data;
-		size_t the_size;
-		size_t the_capacity;
+		T* the_data;
+		int the_size;
+		int the_capacity;
 
 		static const int INIT_CAP = 10;
 
@@ -31,37 +33,39 @@ namespace Pic10b {
 
 		// Other members [public]
 		bool empty() const;
-		size_t size() const;
-		size_t capacity() const;
-		double front() const;
-		double back() const;
-		double at(size_t index) const;
-		double& operator[](size_t index);
-		double operator[](size_t index) const;
+		int size() const;
+		int capacity() const;
+		T front() const;
+		T back() const;
+		T at(size_t index) const;
+		T& operator[](size_t index);
+		T operator[](size_t index) const;
 		void dump_data_to(std::ostream& out) const;
 		void dump_data() const;
-		void push_back(double new_value);
+		void push_back(T new_value);
 		void pop_back();
 
 	private:
 		//Other members [private]
-		void reserve(size_t new_capacity);
+		void reserve(int new_capacity);
 
 	}; // end Pic10b::vector
 
 
 	   /** ************************* THE BIG 4 ************************* **/
-	vector::vector()
+	template<typename T>
+	vector<T>::vector()
 		: the_data(nullptr), the_size(0), the_capacity(INIT_CAP) {
 
-		the_data = new double[the_capacity];
+		the_data = new T[the_capacity];
 	}
 
-	vector::vector(const vector& source)
+	template <typename T>
+	vector<T>::vector(const vector& source)
 		: the_data(nullptr), the_size(source.the_size),
 		the_capacity(source.the_capacity) {
 
-		the_data = new double[the_capacity];
+		the_data = new T[the_capacity];
 
 		// Deep copy of internal array
 		for (int i = 0; i < the_size; ++i) {
@@ -69,11 +73,12 @@ namespace Pic10b {
 		}
 	}
 
-	vector& vector::operator=(const vector& rhs) {
+	template <typename T>
+	vector<T>& vector<T>::operator=(const vector<T>& rhs) {
 		if (this != &rhs) {     // Self-assignment?
 								// Release old memory and request more 
 			delete[] the_data;
-			the_data = new double[rhs.the_capacity];
+			the_data = new T[rhs.the_capacity];
 
 			// Shallow copy non-pointers
 			the_size = rhs.the_size;
@@ -85,42 +90,50 @@ namespace Pic10b {
 		}
 		return *this;
 	}
-
-	vector::~vector() {
+	template<typename T>
+	vector<T>::~vector() {
 		delete[] the_data;
 	}
 
 	/** *********************** OTHER MEMBERS *********************** **/
-	bool vector::empty() const {
+
+	template<typename T>
+	bool vector<T>::empty() const {
 		return the_size == 0;
 	}
 
-	size_t vector::size() const {
+	template<typename T>
+	int vector<T>::size() const {
 		return the_size;
 	}
 
-	size_t vector::capacity() const {
+	template<typename T>
+	int vector<T>::capacity() const {
 		return the_capacity;
 	}
 
-	double vector::front() const {
+	template<typename T>
+	T vector<T>::front() const {
 		return *the_data;
 	}
 
-	double vector::back() const {
+	template<typename T>
+	T vector::back() const {
 		return *(the_data + the_size - 1);
 	}
 
-	double vector::at(size_t index) const {
+	template<typename T>
+	T vector<T>::at(int index) const {
 		if (index < the_size)
 			return the_data[index];
 		return the_data[0];
 	}
 
-	double& vector::operator[](size_t index) {
+	template<typename T>
+	T& vector<T>::operator[](int index) {
 		return the_data[index];
 	}
-	double vector::operator[](size_t index) const {
+	double vector::operator[](int index) const {
 		return the_data[index];
 	}
 
