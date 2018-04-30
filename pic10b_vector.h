@@ -44,6 +44,7 @@ namespace Pic10b {
 		void dump_data_to(std::ostream& out) const;
 		void dump_data() const;
 		void push_back(T new_value);
+		void push_front(T new_value);
 		void pop_back();
 
 
@@ -165,6 +166,18 @@ namespace Pic10b {
 
 		the_data[the_size++] = new_value;
 	}
+// push front feature added
+        template <typename T>
+	void vector<T>::push_front(T new_value){
+	if (the_size==the_capacity)
+		reserve(the_capacity+1);
+	the_size++;
+	for(int i=the_size-1;i>0;i--)
+		the_data[i]=i;
+
+	the_data[0]=new_value;
+	}
+
 
 	// This implementation does not shrink the vector (ever)
 
