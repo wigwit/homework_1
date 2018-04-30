@@ -37,9 +37,9 @@ namespace Pic10b {
 		int capacity() const;
 		T front() const;
 		T back() const;
-		T at(size_t index) const;
-		T& operator[](size_t index);
-		T operator[](size_t index) const;
+		T at(int index) const;
+		T& operator[](int index);
+		T operator[](int index) const;
 		void dump_data_to(std::ostream& out) const;
 		void dump_data() const;
 		void push_back(T new_value);
@@ -133,22 +133,27 @@ namespace Pic10b {
 	T& vector<T>::operator[](int index) {
 		return the_data[index];
 	}
-	double vector::operator[](int index) const {
+
+	template<typename T>
+	T vector::operator[](int index) const {
 		return the_data[index];
 	}
 
-	void vector::dump_data_to(std::ostream& out) const {
+	template<typename T>
+	void vector<T>::dump_data_to(std::ostream& out) const {
 		out << "Vector (dump): ";
-		for (size_t i = 0; i < the_capacity; ++i)
+		for (int i = 0; i < the_capacity; ++i)
 			out << the_data[i] << ' ';
 		out << '\n';
 	}
-	void vector::dump_data() const {
+
+	template<typename T>
+	void vector<T>::dump_data() const {
 		dump_data_to(std::cout);
 	}
 
-
-	void vector::push_back(double new_value) {
+	template<typename T>
+	void vector<T>::push_back(T new_value) {
 		if (the_size == the_capacity)
 			reserve(the_capacity + 1);     // `the_data` is reassigned
 
@@ -156,13 +161,15 @@ namespace Pic10b {
 	}
 
 	// This implementation does not shrink the vector (ever)
-	void vector::pop_back() {
+
+	template<typename T>
+	void vector<T>::pop_back() {
 		if (the_size > 0)
 			--the_size;
 	}
 
-
-	void vector::reserve(size_t new_capacity) {
+	template<typename T>
+	void vector<T>::reserve(int new_capacity) {
 		if (new_capacity > the_capacity) {
 			if (new_capacity <= 2 * the_capacity)
 				new_capacity = 2 * the_capacity;
@@ -172,7 +179,7 @@ namespace Pic10b {
 			the_data = new double[new_capacity];
 			the_capacity = new_capacity;
 
-			for (size_t i = 0; i < the_size; ++i)
+			for (int i = 0; i < the_size; ++i)
 				the_data[i] = old_location[i];
 
 			delete old_location;
@@ -184,14 +191,16 @@ namespace Pic10b {
 
 
   /** ************************ OTHER FUNCTIONS ************************ **/
-std::ostream& operator<<(std::ostream& out, const Pic10b::vector& v) {
+
+template<typename T>
+std::ostream& operator<<(std::ostream& out, const Pic10b::vector<T>& v) {
 	for (size_t i = 0; i < v.size(); ++i)
 		out << v[i] << ' ';
 	return out;
 }
 
-
-void print_vector(const Pic10b::vector& v) {
+template<typename T>
+void print_vector(const Pic10b::vector<T>& v) {
 	if (v.empty())
 		std::cout << "Vector is empty\n";
 	else
