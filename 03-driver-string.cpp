@@ -56,11 +56,12 @@ int main(){
     cout << "\nStatement:\tv1 = ( " << prefix << " * v2 ) * " 
          << lastName << ";\n";
 	v1 = (prefix * v2)* lastName;
+	vector<string> v3 = (v2*prefix)*lastName;
 
     cout << "\nAction(s):\tv1 and v2 are displayed\n";
     cout << "\tv1 = " << v1 << '\n';
     cout << "\tv2 = " << v2 << '\n';
-
+	cout << "\tv3 = " << v3 << "\n";
 
     cout << "\nAction(s):\tBoolean comparisons '==' and '!='\n";
     cout << std::boolalpha

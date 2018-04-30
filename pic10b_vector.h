@@ -9,8 +9,9 @@ PIC10C, Homework1
 Author: Qingxia Guo
 Date: 4/29/2018
 */
-#include <iostream>   // std::ostream, std::cout
 
+
+using std::string;
 
 namespace Pic10b {
 
@@ -200,6 +201,15 @@ namespace Pic10b {
 		return *this;
 	}
 
+	//specifically for string calculation
+	vector<string> vector<string>::operator*(string s)
+	{
+		for (int i = 0; i <the_size; ++i)
+			the_data[i] += " " + s;
+
+		return *this;
+	}
+
 	//for incrementation
 	template <typename T>
 	vector<T>& vector<T>::operator+=(const vector<T>&v)
@@ -262,6 +272,15 @@ template <typename T>
 Pic10b::vector<T> operator*(T n, Pic10b::vector<T>& v)
 {
 	return v * n;// output will be the same as v*n
+}
+
+Pic10b::vector<string> operator*(string s, Pic10b::vector<string> v1)
+{
+	for (int i = 0; i < v1.size(); ++i)
+	{
+		v1[i] = s + " " + v1[i];
+	}
+	return v1;// returning v1 wont affect actual object v1 since this is passed by val
 }
 
 
