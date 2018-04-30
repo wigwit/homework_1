@@ -21,12 +21,6 @@ int main(){
     const int SIZE = 10; // changing some numbers to test out
     const int newEntry = 20;
 
-
-    vector<int> tester;
-    for(int i=1;i<10;i++)
-	    tester.push_front(i);
-
-    cout<< tester;
     cout << "Statement:\tvector<int> v1;\n";
     vector<int> v1;
 
@@ -103,7 +97,7 @@ int main(){
 
     cout << "\tv1 == 3 * v2 is " << ( v1 == 3 * v2 ) << '\n';
     cout << '\n';
-    cout << "\t2 * tester == 3 * tester is " << ( 2 * tester == 3 * tester ) << '\n';
+    cout << "\t2 * v3 == 3 * v2 is " << ( 2 * v3 == 3 * v2 ) << '\n';
 
     cout << "\nStatement:\treturn 0;\n";
 
