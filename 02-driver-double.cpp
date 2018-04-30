@@ -21,7 +21,7 @@ int main(){
     const string itemType = "double";
     const int SIZE = 7;
     const double PI = 3.1416;
-    const int newEntry = 100;
+    const int newEntry = 50;
 
     cout << "Statement:\tvector<double> v1;\n";
     vector<double> v1;
