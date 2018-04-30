@@ -45,6 +45,11 @@ namespace Pic10b {
 		void push_back(T new_value);
 		void pop_back();
 
+
+		//required from assignment description
+		vector<T> operator*(T n); // multiply every element by the value n
+		vector<T>& operator+=(const vector<T>&); // increment update
+
 	private:
 		//Other members [private]
 		void reserve(int new_capacity);
@@ -118,7 +123,7 @@ namespace Pic10b {
 	}
 
 	template<typename T>
-	T vector::back() const {
+	T vector<T>::back() const {
 		return *(the_data + the_size - 1);
 	}
 
@@ -183,6 +188,29 @@ namespace Pic10b {
 				the_data[i] = old_location[i];
 
 			delete old_location;
+		}
+	}
+
+	//for vector<int>/<double> * int/double
+	template<typename T>
+	vector<T> vector<T>::operator*(T n)
+	{
+		for (int i = 0; i <the_size; ++i)
+			the_data[i] *= n;
+		return *this;
+	}
+
+	//for incrementation
+	template <typename T>
+	vector<T>& vector<T>::operator+=(const vector<T>&v)
+	{
+		if (the_size == v.size()) //check if the size matches
+		{
+			for (int i = 0; i < v.size(); ++i)
+				the_data[i] += v[i];
+
+
+			return *this;
 		}
 	}
 
