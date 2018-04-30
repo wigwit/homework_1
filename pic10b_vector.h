@@ -140,7 +140,7 @@ namespace Pic10b {
 	}
 
 	template<typename T>
-	T vector::operator[](int index) const {
+	T vector<T>::operator[](int index) const {
 		return the_data[index];
 	}
 
@@ -179,9 +179,9 @@ namespace Pic10b {
 			if (new_capacity <= 2 * the_capacity)
 				new_capacity = 2 * the_capacity;
 
-			double* old_location = the_data;
+			T* old_location = the_data;
 
-			the_data = new double[new_capacity];
+			the_data = new T[new_capacity];
 			the_capacity = new_capacity;
 
 			for (int i = 0; i < the_size; ++i)
@@ -263,6 +263,62 @@ Pic10b::vector<T> operator*(T n, Pic10b::vector<T>& v)
 {
 	return v * n;// output will be the same as v*n
 }
+
+
+
+//boolean operator
+
+template<typename T>
+//for comparing the length of two vectors
+//wont apply to string
+bool operator<=(const Pic10b::vector<T>&v1, const Pic10b::vector<T>&v2)
+{
+	return (sqrt(v1*v1) <= sqrt(v2*v2));
+}
+
+template<typename T>
+bool operator<(const Pic10b::vector<T>&v1, const Pic10b::vector<T>&v2)
+{
+	return (sqrt(v1*v1) <sqrt(v2*v2));
+}
+
+template<typename T>
+bool operator>(const Pic10b::vector<T>&v1, const Pic10b::vector<T>&v2)
+{
+	return(!(v1 <= v2));
+}
+
+template<typename T>
+bool operator>=(const Pic10b::vector<T>&v1, const Pic10b::vector<T>&v2)
+{
+	return(!(v1 < v2));
+}
+
+// comparing if the two vectors are identical
+//will apply to string type
+template<typename T>
+bool operator==(const Pic10b::vector<T>&v1, const Pic10b::vector<T>&v2)
+{
+	if (v1.size() == v2.size())
+	{
+		for (int i = 0; i < v1.size(); ++i)
+		{
+			if (v1[i] == v2[i])
+				continue;
+			else
+				return false;
+		}
+		return true;
+	}
+	return false;
+}
+
+template<typename T>
+bool operator!=(const Pic10b::vector<T>& v1, const Pic10b::vector<T>&v2)
+{
+	return (!(v1 == v2));
+}
+
 
 
 #endif 
