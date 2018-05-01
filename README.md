@@ -40,7 +40,7 @@ Dynamic Memory Allocation:
 Since this class takes advantage of heap memory, The copy constructor, assignment operator and destructor should be specified in order to avoid shallow copying. 
 
 the example might look like :
-{
+
 template <typename T>
 vecotr<T>::vector (const vector<T> & v)
 {
@@ -52,16 +52,16 @@ vecotr<T>::vector (const vector<T> & v)
      the_capacity=v.the_capacity;
      the_size=v.the_size;
 }
-
-}
-
 Similarly to assignment operator.
 
 
-Member Functions
 
-All the member function are similar to standard vector class
-However, there are a few different
+
+
+
+
+Member Functions:
+All the member function are similar to standard vector class. However, there are a few different
 
 front():
 return the first value in vector.
@@ -83,12 +83,16 @@ adding the new_value to the front of the vector.
 
 Special Requirement from Assignment Description:
 
+
 operator * :
 Performs the dot product for int and double types.
 Performs different for string.
 
+
+
 operator <<:
 prints out each element in vectors.
+
 
 boolean operator:
 compares the length of int and double vectors.
