@@ -13,7 +13,7 @@ The PIC10b namespace:
 By writing the declaration and definition within the namespace Pic10b, users can call the Pic10b::vector<type> in their main function, as opposed to std::vector<type>. 
 
 An example might look like:
-{
+
 namespace Pic10b {
 
     template <typename T>
@@ -26,7 +26,7 @@ namespace Pic10b {
 
 }
 
-}
+
 Variable Description
 
 the_data: a pointer that point to the location of firts element in vector
@@ -77,7 +77,6 @@ store the value that deleted or changed.
 
 push_front(T new_value): 
 adding the new_value to the front of the vector.
-
 
 
 
